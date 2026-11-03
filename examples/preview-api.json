@@ -1,0 +1,27 @@
+{
+  "1": {
+    "class_type": "H3SemanticTimelinePreview",
+    "inputs": {
+      "prompt": "A woman in a black sweater sits on a sofa speaking to camera. She stands up, walks toward the window while continuing to speak, looks outside, then turns back to camera.",
+      "context_length": 124,
+      "context_overlap": 39,
+      "total_frames": 719,
+      "server_url": "",
+      "model_alias": "h3-parser",
+      "temperature": 0.1,
+      "max_tokens": 8192,
+      "timeout": 180,
+      "seed": 42,
+      "response_mode": "json_schema",
+      "cache_revision": 0,
+      "auto_start_server": true,
+      "llama_server_executable": "",
+      "gguf_model": "",
+      "server_host": "127.0.0.1",
+      "server_port": 8080,
+      "server_startup_timeout": 180,
+      "server_context_size": 16384,
+      "server_gpu_layers": -1
+    }
+  }
+}

@@ -1,0 +1,327 @@
+{
+  "version": "0.1.0",
+  "source_prompt": "A woman in a black sweater sits on a sofa speaking to camera. She stands up, walks toward the window while continuing to speak, looks outside, then turns back to camera.",
+  "total_frames": 719,
+  "context_length": 124,
+  "context_overlap": 39,
+  "latent_context_length": 37,
+  "latent_context_overlap": 12,
+  "semantic": {
+    "persistent": {
+      "subject": [
+        "The same woman."
+      ],
+      "appearance": [],
+      "clothing": [
+        "Black sweater."
+      ],
+      "environment": [
+        "The same living room."
+      ],
+      "lighting": [],
+      "camera": [],
+      "style": [],
+      "audio": [
+        "She continues speaking naturally."
+      ],
+      "references": []
+    },
+    "initial_state": {
+      "posture": "She is seated.",
+      "location": "She is at the sofa.",
+      "facing": "She faces the camera."
+    },
+    "events": [
+      {
+        "id": "speak",
+        "kind": "ongoing",
+        "start_state": {},
+        "action": "She speaks to camera.",
+        "continuation": "She continues speaking to the camera.",
+        "active_state": {},
+        "end_state": {},
+        "weight": 2,
+        "depends_on": [],
+        "dialogue": []
+      },
+      {
+        "id": "rise",
+        "kind": "transition",
+        "start_state": {
+          "posture": "She is seated."
+        },
+        "action": "She stands up.",
+        "continuation": "The ongoing activity continues.",
+        "active_state": {},
+        "end_state": {
+          "posture": "She is already standing."
+        },
+        "weight": 1,
+        "depends_on": [],
+        "dialogue": []
+      },
+      {
+        "id": "walk",
+        "kind": "ongoing",
+        "start_state": {
+          "location": "She is at the sofa."
+        },
+        "action": "She walks toward the window.",
+        "continuation": "She continues walking toward the window.",
+        "active_state": {
+          "location": "She is approaching the window."
+        },
+        "end_state": {
+          "location": "She has reached the window."
+        },
+        "weight": 3,
+        "depends_on": [],
+        "dialogue": []
+      },
+      {
+        "id": "look",
+        "kind": "transition",
+        "start_state": {
+          "facing": "She faces the camera."
+        },
+        "action": "She looks outside.",
+        "continuation": "The ongoing activity continues.",
+        "active_state": {},
+        "end_state": {
+          "facing": "She faces outside."
+        },
+        "weight": 1,
+        "depends_on": [],
+        "dialogue": []
+      },
+      {
+        "id": "turn",
+        "kind": "transition",
+        "start_state": {
+          "facing": "She faces outside."
+        },
+        "action": "She turns back toward camera.",
+        "continuation": "The ongoing activity continues.",
+        "active_state": {},
+        "end_state": {
+          "facing": "She faces the camera."
+        },
+        "weight": 1,
+        "depends_on": [],
+        "dialogue": []
+      }
+    ]
+  },
+  "windows": [
+    {
+      "index": 0,
+      "latent_start": 0,
+      "latent_end": 37,
+      "frame_start": 0,
+      "frame_end": 124,
+      "center_ratio": 0.08490566037735849,
+      "semantic_cell": [
+        0,
+        104.5
+      ],
+      "events": [
+        "speak"
+      ],
+      "end_state": {
+        "posture": "She is seated.",
+        "location": "She is at the sofa.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She speaks to camera.",
+      "conditioning_region": 0
+    },
+    {
+      "index": 1,
+      "latent_start": 25,
+      "latent_end": 62,
+      "frame_start": 85,
+      "frame_end": 209,
+      "center_ratio": 0.2028301886792453,
+      "semantic_cell": [
+        104.5,
+        189.5
+      ],
+      "events": [
+        "speak",
+        "rise"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She is at the sofa.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She continues speaking to the camera. She stands up. By the end of this action: She is already standing.",
+      "conditioning_region": 1
+    },
+    {
+      "index": 2,
+      "latent_start": 50,
+      "latent_end": 87,
+      "frame_start": 170,
+      "frame_end": 294,
+      "center_ratio": 0.32075471698113206,
+      "semantic_cell": [
+        189.5,
+        274.5
+      ],
+      "events": [
+        "rise",
+        "walk"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She is approaching the window.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is at the sofa. She faces the camera. She walks toward the window.",
+      "conditioning_region": 2
+    },
+    {
+      "index": 3,
+      "latent_start": 75,
+      "latent_end": 112,
+      "frame_start": 255,
+      "frame_end": 379,
+      "center_ratio": 0.4386792452830189,
+      "semantic_cell": [
+        274.5,
+        359.5
+      ],
+      "events": [
+        "walk"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She is approaching the window.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+      "conditioning_region": 3
+    },
+    {
+      "index": 4,
+      "latent_start": 100,
+      "latent_end": 137,
+      "frame_start": 340,
+      "frame_end": 464,
+      "center_ratio": 0.5566037735849056,
+      "semantic_cell": [
+        359.5,
+        444.5
+      ],
+      "events": [
+        "walk"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She is approaching the window.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+      "conditioning_region": 4
+    },
+    {
+      "index": 5,
+      "latent_start": 125,
+      "latent_end": 162,
+      "frame_start": 425,
+      "frame_end": 549,
+      "center_ratio": 0.6745283018867925,
+      "semantic_cell": [
+        444.5,
+        529.5
+      ],
+      "events": [
+        "walk"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She is approaching the window.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+      "conditioning_region": 5
+    },
+    {
+      "index": 6,
+      "latent_start": 150,
+      "latent_end": 187,
+      "frame_start": 510,
+      "frame_end": 634,
+      "center_ratio": 0.7924528301886793,
+      "semantic_cell": [
+        529.5,
+        614.5
+      ],
+      "events": [
+        "walk",
+        "look"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She has reached the window.",
+        "facing": "She faces outside."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window. By the end of this action: She has reached the window. She looks outside. By the end of this action: She faces outside.",
+      "conditioning_region": 6
+    },
+    {
+      "index": 7,
+      "latent_start": 175,
+      "latent_end": 212,
+      "frame_start": 595,
+      "frame_end": 719,
+      "center_ratio": 0.910377358490566,
+      "semantic_cell": [
+        614.5,
+        719
+      ],
+      "events": [
+        "look",
+        "turn"
+      ],
+      "end_state": {
+        "posture": "She is already standing.",
+        "location": "She has reached the window.",
+        "facing": "She faces the camera."
+      },
+      "prompt": "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She has reached the window. She faces outside. She turns back toward camera. By the end of this action: She faces the camera.",
+      "conditioning_region": 7
+    }
+  ],
+  "window_prompts": [
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She speaks to camera.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She continues speaking to the camera. She stands up. By the end of this action: She is already standing.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is at the sofa. She faces the camera. She walks toward the window.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window. By the end of this action: She has reached the window. She looks outside. By the end of this action: She faces outside.",
+    "The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She has reached the window. She faces outside. She turns back toward camera. By the end of this action: She faces the camera."
+  ],
+  "conditioning_slots": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "selected_regions": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ]
+}

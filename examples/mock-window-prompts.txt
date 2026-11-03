@@ -1,0 +1,25 @@
+MOCK semantic fixture; not an actual LLM response.
+
+Window 1 | frames [0,124) | conditioning region 0
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She speaks to camera.
+
+Window 2 | frames [85,209) | conditioning region 1
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is seated. She is at the sofa. She faces the camera. She continues speaking to the camera. She stands up. By the end of this action: She is already standing.
+
+Window 3 | frames [170,294) | conditioning region 2
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is at the sofa. She faces the camera. She walks toward the window.
+
+Window 4 | frames [255,379) | conditioning region 3
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.
+
+Window 5 | frames [340,464) | conditioning region 4
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.
+
+Window 6 | frames [425,549) | conditioning region 5
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window.
+
+Window 7 | frames [510,634) | conditioning region 6
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She is approaching the window. She faces the camera. She continues walking toward the window. By the end of this action: She has reached the window. She looks outside. By the end of this action: She faces outside.
+
+Window 8 | frames [595,719) | conditioning region 7
+The same woman. Black sweater. The same living room. She continues speaking naturally. She is already standing. She has reached the window. She faces outside. She turns back toward camera. By the end of this action: She faces the camera.
