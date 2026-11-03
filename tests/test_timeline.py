@@ -148,8 +148,9 @@ class SemanticTests(unittest.TestCase):
         source=SOURCE+' '+data['persistent']['references'][0]
         prompts=build(data,source)['window_prompts']
         self.assertTrue(all(all(m in p for m in ('<Picture 1>','<Video 1>','<Audio 1>')) for p in prompts))
-    def test_reference_loss_rejected(self):
-        with self.assertRaises(TimelineError): build(source=SOURCE+' <Picture 1>')
+    def test_reference_loss_is_repaired(self):
+        prompts=build(source=SOURCE+' <Picture 1>')['window_prompts']
+        self.assertTrue(all('<Picture 1>' in p for p in prompts))
     def test_no_temporal_events(self):
         data=fixture(); data['events']=[]
         plan=build(data, 'A woman in a black sweater sits in a living room.')
@@ -174,9 +175,10 @@ class SemanticTests(unittest.TestCase):
 class ParserTests(unittest.TestCase):
     def setUp(self): _CACHE.clear()
     def test_repair_once(self):
+        expected=parse_json(json.dumps(fixture()),SOURCE)
         with patch('h3_semantic.parser.request_chat',side_effect=['bad',json.dumps(fixture())]) as send:
             parsed,hit=analyze(SOURCE,719,124,39,ParserSettings())
-            self.assertEqual(parsed,fixture()); self.assertFalse(hit); self.assertEqual(send.call_count,2)
+            self.assertEqual(parsed,expected); self.assertFalse(hit); self.assertEqual(send.call_count,2)
     def test_repair_failure_no_fallback(self):
         with patch('h3_semantic.parser.request_chat',return_value='bad') as send:
             with self.assertRaisesRegex(TimelineError,'after one repair'): analyze(SOURCE,719,124,39,ParserSettings())
