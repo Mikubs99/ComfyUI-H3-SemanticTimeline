@@ -52,6 +52,7 @@ class ManagerFixture(unittest.TestCase):
         self.gguf = folder/'parser model.gguf'
         self.exe.write_bytes(b'mocked executable; never executed')
         self.gguf.write_bytes(b'mocked model; never loaded')
+        self.exe.chmod(0o755)
         self.settings = ParserSettings(llama_server_executable=str(self.exe),gguf_model=str(self.gguf),server_startup_timeout=1)
         self.manager = sm.ServerManager()
         self.clock = Clock()
@@ -203,12 +204,16 @@ class ProbeTests(unittest.TestCase):
     def test_health_loading(self):
         with patch.object(sm,'_get_json',return_value=LOADING):
             self.assertEqual(sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5),'loading')
-    def test_connection_refused_only_safe_absence(self):
+    def test_connection_refused_and_timeout_absence(self):
         with patch.object(sm,'_get_json',side_effect=urllib.error.URLError(ConnectionRefusedError(errno.ECONNREFUSED,'refused'))):
             self.assertEqual(sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5),'absent')
-        for reason in (TimeoutError('timed out'),OSError('DNS failed')):
-            with patch.object(sm,'_get_json',side_effect=urllib.error.URLError(reason)),self.assertRaises(TimelineError):
+        with patch.object(sm,'_get_json',side_effect=urllib.error.URLError(TimeoutError('timed out'))), patch.object(sm,'_loopback_listener_state',return_value=False):
+            self.assertEqual(sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5),'absent')
+        for listener in (True,None):
+            with patch.object(sm,'_get_json',side_effect=urllib.error.URLError(TimeoutError('timed out'))), patch.object(sm,'_loopback_listener_state',return_value=listener), self.assertRaises(TimelineError):
                 sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5)
+        with patch.object(sm,'_get_json',side_effect=urllib.error.URLError(OSError('DNS failed'))), self.assertRaises(TimelineError):
+            sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5)
     def test_wrong_provider_rejected(self):
         with patch.object(sm,'_get_json',side_effect=[HEALTH,(200,{'data':[{'id':'h3-parser','owned_by':'other'}]})]),self.assertRaisesRegex(TimelineError,'owned_by'):
             sm.probe_server('http://localhost','h3-parser',sm.time.monotonic()+5)
